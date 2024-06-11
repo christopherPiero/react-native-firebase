@@ -79,26 +79,13 @@ NSString *const KEY_CRASHLYTICS_JAVASCRIPT_EXCEPTION_HANDLER_CHAINING_ENABLED =
 }
 
 + (NSArray<FIRComponent *> *)componentsToRegister {
-  return @[];
-}
-
-/*
- * configureWithApp is automatically invoked by Firebase as this app is a registered FIRLibrary with
- * the SDK.
- *
- * At this point "configure" has already been called on the FIRApp instance. This behavior is meant
- * to mirror what is done in ReactNativeFirebaseCrashlyticsInitProvider.java
- *
- * This pattern may not be supported long term
- * https://github.com/firebase/firebase-ios-sdk/issues/2933
- */
-+ (void)configureWithApp:(FIRApp *)app {
   // This setting is sticky. setCrashlyticsCollectionEnabled persists the setting to disk until it
   // is explicitly set otherwise or the app is deleted. Jump to the setCrashlyticsCollectionEnabled
   // definition to see implementation details.
   [[FIRCrashlytics crashlytics]
       setCrashlyticsCollectionEnabled:self.isCrashlyticsCollectionEnabled];
   DLog(@"RNFBCrashlyticsInit initialization successful");
+  return @[];
 }
 
 @end
